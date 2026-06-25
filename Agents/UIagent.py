@@ -1391,7 +1391,6 @@ def render_footer():
 <div class="footer-links">
 <a href="https://github.com" target="_blank" class="footer-link" title="GitHub">📂</a>
 <a href="https://linkedin.com" target="_blank" class="footer-link" title="LinkedIn">💼</a>
-<a href="https://portfolio.dev" target="_blank" class="footer-link" title="Portfolio">🌐</a>
 <a href="mailto:hello@example.com" class="footer-link" title="Email">✉️</a>
 </div>
 <div style="font-size:0.7rem;color:#64748B;margin-top:12px;">
