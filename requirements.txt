@@ -21,3 +21,12 @@ rich>=13.7.0
 
 # UI
 streamlit>=1.35.0
+
+python-dotenv
+streamlit
+        
+langchain-mistralai
+langchain
+langchain-core
+tavily-python
+requests
