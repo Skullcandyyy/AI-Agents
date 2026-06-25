@@ -1,5 +1,5 @@
 """
-🌍 CityMind AI Agent —Streamlit UI
+🌍 CityMind AI Agent — Premium Streamlit UI
 "An Intelligent AI Agent that thinks, searches, and answers using real-world tools."
 """
 
