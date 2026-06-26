@@ -659,7 +659,6 @@ section[data-testid="stSidebar"] .stButton>button:active{{transform:scale(0.97) 
 }}
 
 /* ── spinner ── */
-/* ── spinner ── */
 .stSpinner>div>div{{border-top-color:#7C3AED!important;}}
 .stProgress>div>div>div{{background:linear-gradient(90deg,#7C3AED,#06B6D4)!important;}}
 blockquote{{border-left:3px solid #7C3AED!important;padding-left:16px!important;margin:10px 0!important;}}
@@ -700,7 +699,26 @@ def inject_bg_animation():
     width: 100%; height: 100%;
     z-index: -3; pointer-events: none; opacity: 0.5;
 }
+#cm-global-backdrop {
+    position: fixed; inset: 0; z-index: 9998;
+    backdrop-filter: blur(28px) saturate(160%) brightness(0.6);
+    -webkit-backdrop-filter: blur(28px) saturate(160%) brightness(0.6);
+    background:
+        radial-gradient(ellipse 70% 60% at 20% 20%, rgba(124,58,237,0.28), transparent 65%),
+        radial-gradient(ellipse 60% 70% at 80% 75%, rgba(6,182,212,0.22), transparent 60%),
+        radial-gradient(ellipse 50% 50% at 55% 10%, rgba(236,72,153,0.14), transparent 60%),
+        rgba(5, 10, 24, 0.70);
+    animation: backdrop-drift 8s ease-in-out infinite alternate;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+@keyframes backdrop-drift {
+    0%   { filter: hue-rotate(0deg);   }
+    50%  { filter: hue-rotate(20deg);  }
+    100% { filter: hue-rotate(-15deg); }
+}
 </style>
+<div id="cm-global-backdrop"></div>
 <canvas id="cm-canvas"></canvas>
 <script>
 (function(){
@@ -1985,23 +2003,13 @@ def render_thinking_overlay():
     pointer-events: none;
 }}
 
-/* ── BACKDROP: blur + gradient wash ── */
-.cm-backdrop {{
-    position: absolute; inset: 0;
-    backdrop-filter: blur(28px) saturate(160%) brightness(0.6);
-    -webkit-backdrop-filter: blur(28px) saturate(160%) brightness(0.6);
-    background:
-        radial-gradient(ellipse 70% 60% at 20% 20%, rgba(124,58,237,0.28), transparent 65%),
-        radial-gradient(ellipse 60% 70% at 80% 75%, rgba(6,182,212,0.22), transparent 60%),
-        radial-gradient(ellipse 50% 50% at 55% 10%, rgba(236,72,153,0.14), transparent 60%),
-        rgba(5, 10, 24, 0.70);
-    animation: backdrop-drift 8s ease-in-out infinite alternate;
+/* ── TOGGLE GLOBAL BACKDROP ── */
+#cm-global-backdrop {{
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transition: opacity 0.1s !important;
 }}
-@keyframes backdrop-drift {{
-    0%   {{ filter: hue-rotate(0deg);   }}
-    50%  {{ filter: hue-rotate(20deg);  }}
-    100% {{ filter: hue-rotate(-15deg); }}
-}}
+
 
 /* ── GRADIENT BORDER wrapper ── */
 .cm-card-wrap {{
@@ -2209,7 +2217,6 @@ def render_thinking_overlay():
 </style>
 
 <div id="cm-thinking-overlay">
-  <div class="cm-backdrop"></div>
   <div class="cm-card-wrap">
     <div class="cm-card">
 
