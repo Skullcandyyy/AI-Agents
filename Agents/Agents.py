@@ -66,7 +66,7 @@ def get_news(city: str) -> str:
 
     return f"Latest news in {city}:\n\n" + "\n\n".join(news_list)
 
-llm = ChatMistralAI(model="mistral-large-latest")
+llm = ChatMistralAI(model="mistral-small-latest")
 
 @wrap_tool_call
 def human_approval(request,handler):
