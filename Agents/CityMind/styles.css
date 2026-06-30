@@ -1,0 +1,477 @@
+/* styles.css - Premium CityMind AI SaaS CSS */
+
+/* --- General Reset and Body --- */
+body {
+    background-color: #050816;
+    color: #F8FAFC;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom Background with animated gradients */
+.stApp {
+    background: radial-gradient(circle at 15% 50%, rgba(79, 140, 255, 0.1), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(123, 97, 255, 0.15), transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.1), transparent 30%),
+                #050816;
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Remove default Streamlit top padding and branding */
+header { visibility: hidden !important; }
+.css-15zrgzn { display: none; } 
+footer { visibility: hidden !important; }
+
+/* --- Sidebar --- */
+[data-testid="stSidebar"] {
+    background-color: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(25px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+[data-testid="stSidebarNav"] {
+    display: none;
+}
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 20px;
+}
+.sidebar-header h1 {
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, #4F8CFF, #7B61FF);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    margin: 0;
+}
+.sidebar-header p {
+    color: #94A3B8;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* --- Stats & Status --- */
+/* Secondary Button overrides (Hero Buttons) */
+div[data-testid="stButton"] > button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #F8FAFC;
+    transition: all 0.3s ease;
+    height: auto;
+}
+div[data-testid="stButton"] > button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    border-color: rgba(79, 140, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+div[data-testid="stButton"] > button:active {
+    transform: translateY(0);
+}
+div[data-testid="stButton"] p {
+    font-size: 1.2rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(79, 140, 255, 0.1);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #22C55E;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+    animation: pulse 2s infinite;
+}
+.status-dot.offline {
+    background-color: #EF4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+    animation: none;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- Hero Section --- */
+.hero-container {
+    text-align: center;
+    margin: 40px auto 60px;
+    max-width: 800px;
+    animation: fadeUp 1s ease-out;
+}
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #F8FAFC 0%, #94A3B8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-title span {
+    background: linear-gradient(90deg, #4F8CFF, #7B61FF, #38BDF8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 5s linear infinite;
+}
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #94A3B8;
+    margin-bottom: 40px;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+/* --- Quick Action Cards --- */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+.action-card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.action-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(79, 140, 255, 0.5);
+    box-shadow: 0 10px 30px -10px rgba(79, 140, 255, 0.3);
+}
+.action-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* --- Chat UI Overrides --- */
+.stChatMessage {
+    background: transparent !important;
+    padding: 1rem 0 !important;
+}
+.stChatMessage [data-testid="chatAvatarIcon-user"] {
+    background: linear-gradient(135deg, #7B61FF, #38BDF8) !important;
+}
+.stChatMessage [data-testid="chatAvatarIcon-assistant"] {
+    background: linear-gradient(135deg, #111827, #0F172A) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+/* AI Message Bubble */
+[data-testid="stChatMessageContent"] {
+    border-radius: 20px !important;
+    padding: 1.5rem !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Custom tool execution timeline container */
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+    color: #94A3B8;
+    font-size: 0.9rem;
+    animation: slideIn 0.3s ease-out;
+}
+.timeline-icon {
+    background: rgba(79, 140, 255, 0.1);
+    color: #4F8CFF;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Input Box --- */
+[data-testid="stChatInput"] {
+    border-radius: 24px !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(123, 97, 255, 0.4) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+[data-testid="stChatInput"]:focus-within {
+    border-color: #4F8CFF !important;
+    box-shadow: 0 0 20px rgba(79, 140, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+[data-testid="stChatInput"] textarea {
+    color: #F8FAFC !important;
+}
+
+/* --- Animations --- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Custom Markdown Elements inside Chat --- */
+.stMarkdown p {
+    line-height: 1.6;
+}
+.stMarkdown pre {
+    background: #0F172A !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 12px !important;
+}
+
+/* --- Weather Card (Custom Component HTML) --- */
+.premium-weather-card {
+    background: linear-gradient(135deg, rgba(79,140,255,0.15) 0%, rgba(123,97,255,0.15) 100%);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 24px;
+    color: white;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease-out;
+}
+.premium-weather-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+.weather-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.weather-temp {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+.weather-city {
+    font-size: 1.2rem;
+    color: #E2E8F0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.weather-desc {
+    font-size: 1.1rem;
+    color: #38BDF8;
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+}
+.w-detail {
+    text-align: center;
+}
+.w-detail span {
+    display: block;
+    color: #94A3B8;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+.w-detail strong {
+    font-size: 1.1rem;
+}
+
+/* --- News Card (Custom Component HTML) --- */
+.premium-news-card {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid #7B61FF;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    transition: all 0.3s ease;
+    animation: slideIn 0.5s ease-out;
+}
+.premium-news-card:hover {
+    transform: translateX(5px);
+    background: rgba(30, 41, 59, 0.8);
+    border-left-color: #38BDF8;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.news-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #F8FAFC;
+    text-decoration: none;
+    display: block;
+}
+.news-title:hover {
+    color: #4F8CFF;
+}
+.news-snippet {
+    color: #94A3B8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+.news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #64748B;
+}
+
+/* Dialog Styling tweaks */
+[data-testid="stDialog"] {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(30px) !important;
+    border: 1px solid rgba(123, 97, 255, 0.4) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+[data-testid="stDialog"] h2 {
+    color: #F8FAFC !important;
+}
+
+/* --- Weather Animations --- */
+.weather-animation-layer {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 20px;
+    z-index: 0;
+}
+.weather-main, .weather-details {
+    position: relative;
+    z-index: 1;
+}
+.weather-sunny .weather-animation-layer::before {
+    content: '☀️';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    font-size: 150px;
+    opacity: 0.15;
+    animation: rotateSun 20s linear infinite;
+    filter: drop-shadow(0 0 20px #FDB813);
+}
+@keyframes rotateSun {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.weather-cloudy .weather-animation-layer::before,
+.weather-cloudy .weather-animation-layer::after {
+    content: '☁️';
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.1;
+    animation: floatCloud 15s linear infinite;
+    filter: drop-shadow(0 0 10px white);
+}
+.weather-cloudy .weather-animation-layer::before { top: 10px; left: -100px; }
+.weather-cloudy .weather-animation-layer::after { top: 60px; left: -200px; font-size: 60px; animation-delay: 7s; }
+@keyframes floatCloud {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(500px); }
+}
+.weather-rain .weather-animation-layer {
+    background-image: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));
+}
+.weather-rain .weather-animation-layer::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: rgba(255,255,255,0.2);
+    top: -100px;
+    left: 20%;
+    box-shadow: 100px -50px 0 rgba(255,255,255,0.2), 200px -20px 0 rgba(255,255,255,0.2), 300px -80px 0 rgba(255,255,255,0.2);
+    animation: rainDrop 0.6s linear infinite;
+}
+@keyframes rainDrop {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(500px); }
+}
+.weather-thunder .weather-animation-layer {
+    animation: lightningFlash 4s infinite;
+}
+.weather-thunder .weather-animation-layer::before {
+    content: '⚡';
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 100px;
+    opacity: 0;
+    animation: lightningStrike 4s infinite;
+    filter: drop-shadow(0 0 20px yellow);
+}
+@keyframes lightningFlash {
+    0%, 90%, 94%, 100% { background-color: transparent; }
+    91%, 93% { background-color: rgba(255,255,255,0.1); }
+}
+@keyframes lightningStrike {
+    0%, 90%, 94%, 100% { opacity: 0; }
+    91%, 93% { opacity: 0.4; transform: scale(1.1); }
+}
