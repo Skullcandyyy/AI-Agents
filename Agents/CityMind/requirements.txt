@@ -1,8 +1,0 @@
-streamlit>=1.34.0
-langchain
-langchain-core
-langchain-mistralai
-tavily-python
-python-dotenv
-requests
-rich
