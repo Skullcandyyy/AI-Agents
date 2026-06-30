@@ -24,8 +24,21 @@ from tavily import TavilyClient
 # ═══════════════════════════════════════════════════════════════
 # 1. PAGE CONFIG & PREMIUM CSS
 # ═══════════════════════════════════════════════════════════════
+import random
+
 # We expand the sidebar to show the new features while keeping the landing-page feel.
 st.set_page_config(page_title="CityMind - AI Agent", page_icon="🌍", layout="wide", initial_sidebar_state="expanded")
+
+if "bg_url" not in st.session_state:
+    premium_bgs = [
+        "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&q=80&w=1600&h=900",
+        "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&q=80&w=1600&h=900",
+        "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=1600&h=900",
+        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1600&h=900",
+        "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&q=80&w=1600&h=900",
+        "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&q=80&w=1600&h=900"
+    ]
+    st.session_state.bg_url = random.choice(premium_bgs)
 
 CSS = """
 <style>
@@ -46,18 +59,46 @@ CSS = """
 
 /* ───────────────────────────────────────────────────────── */
 /* DYNAMIC BACKGROUND */
-/* ───────────────────────────────────────────────────────── */
 [data-testid="stAppViewContainer"] {
-    background-image: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.95)), url("https://loremflickr.com/1600/900/metropolis,night,lights/all?random=1");
+    background-image: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.95)), url("DYNAMIC_BG_URL_HERE");
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
 }
 [data-testid="stSidebar"] {
-    background-color: rgba(15, 23, 42, 0.3) !important;
-    backdrop-filter: blur(20px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+    background-color: rgba(15, 23, 42, 0.15) !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
     border-right: 1px solid rgba(255,255,255,0.1) !important;
+}
+[data-testid="stSidebar"] button {
+    height: 60px !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #cbd5e1 !important;
+    border-radius: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+[data-testid="stSidebar"] button:hover {
+    border-color: #38BDF8 !important;
+    background: rgba(56, 189, 248, 0.1) !important;
+    color: #38BDF8 !important;
+}
+[data-testid="stSidebar"] button p {
+    color: inherit !important;
+    margin: 0 !important;
+}
+
+[data-testid="stSidebar"] > div:first-child {
+    background-color: transparent !important;
 }
 .stApp::before {
     display: none !important;
@@ -71,11 +112,11 @@ div[data-testid="stBottom"] > div {
     background: transparent !important;
 }
 div[data-testid="stChatInput"] {
-    background-color: rgba(15, 23, 42, 0.5) !important;
-    backdrop-filter: blur(24px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+    background-color: rgba(15, 23, 42, 0.15) !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 16px !important;
+    border-radius: 30px !important;
     box-shadow: 0 10px 40px rgba(0,0,0,0.4) !important;
 }
 div[data-testid="stChatInput"] * {
@@ -87,10 +128,13 @@ div[data-testid="stChatInput"] textarea {
 
 /* Header Glassmorphism */
 [data-testid="stHeader"] {
-    background-color: rgba(15, 23, 42, 0.3) !important;
-    backdrop-filter: blur(15px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+    background-color: rgba(15, 23, 42, 0.15) !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+[data-testid="stHeader"] > div:first-child {
+    background-color: transparent !important;
 }
 
 /* Custom AI Loading Animation */
@@ -236,9 +280,9 @@ div[data-testid="stChatInput"] textarea {
 /* ───────────────────────────────────────────────────────── */
 /* Make the main chat area look like a floating terminal */
 .stChatInputContainer {
-    background: rgba(11, 17, 33, 0.6) !important;
-    backdrop-filter: blur(30px) !important;
-    -webkit-backdrop-filter: blur(30px) !important;
+    background: rgba(15, 23, 42, 0.15) !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
     border: 1px solid rgba(124, 58, 237, 0.3) !important;
     border-radius: 30px !important;
     padding: 5px !important;
@@ -391,6 +435,7 @@ div[data-testid="stChatInput"] textarea {
 }
 </style>
 """
+CSS = CSS.replace("DYNAMIC_BG_URL_HERE", st.session_state.bg_url)
 st.markdown(CSS, unsafe_allow_html=True)
 
 # Vanta.js 3D Particles Background (Transparent over Aurora)
@@ -604,15 +649,14 @@ with st.sidebar:
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("🧹 Clear Chat"):
+        if st.button("🧹 Clear", use_container_width=True):
             st.session_state.messages = [SystemMessage(content="you are a helpful city assistant.")]
             st.session_state.pending_tool_calls = None
             st.session_state.active_city = None
             st.rerun()
     with col2:
-        if st.button("📥 Export"):
-            chat_data = json.dumps([{"role": m.type, "content": m.content} for m in st.session_state.messages if m.type in ("human", "ai")], indent=2)
-            st.download_button(label="Download", data=chat_data, file_name="chat_history.json", mime="application/json")
+        chat_data = json.dumps([{"role": m.type, "content": m.content} for m in st.session_state.messages if m.type in ("human", "ai")], indent=2)
+        st.download_button(label="📥 Export", data=chat_data, file_name="chat_history.json", mime="application/json", use_container_width=True)
 
 
 # --- HERO SECTION ---
@@ -687,11 +731,15 @@ if st.session_state.active_city:
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+        }}
         [data-testid="stSidebar"] {{
-            background-color: rgba(15, 23, 42, 0.3) !important;
-            backdrop-filter: blur(20px) saturate(150%) !important;
-            -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+            background-color: rgba(15, 23, 42, 0.15) !important;
+            backdrop-filter: blur(10px) saturate(120%) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
             border-right: 1px solid rgba(255,255,255,0.1) !important;
+        }}
+        [data-testid="stSidebar"] > div:first-child {{
+            background-color: transparent !important;
         }}
         .stApp::before {{
             display: none !important;
